@@ -75,8 +75,4 @@
   line-height: 1.2;
   text-align: center;
 }
-button {
-    outline: none !important;
-    border: none;
-    background: transparent;
-}
+
