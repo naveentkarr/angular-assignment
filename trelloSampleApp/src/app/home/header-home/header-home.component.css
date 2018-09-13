@@ -1,0 +1,71 @@
+.header {
+    position: relative;
+    z-index: 50;
+    background: #fff;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+}
+.header .top-navbar {
+    min-height: 50px;
+    padding: 0 15px 0 0;
+}
+
+@media (min-width: 768px){
+.navbar-expand-md {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+}
+.navbar {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.header .top-navbar .navbar-header {
+    line-height: 45px;
+    text-align: center;
+    background: #fff;
+}
+
+@media (min-width: 768px){
+.navbar-header {
+    width: 240px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+}
+.header .top-navbar .navbar-header .navbar-brand {
+    margin-right: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+@media (min-width: 768px){
+.navbar-header .navbar-brand {
+    padding-top: 0;
+}
+}
+@media (min-width: 768px){
+.navbar-expand-md .navbar-collapse {
+    display: -webkit-box!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+}
+}
