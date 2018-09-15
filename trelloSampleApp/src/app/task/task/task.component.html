@@ -1,7 +1,43 @@
 <app-home-header></app-home-header>
 <div class="container-fluid">
-                <!-- Start Page Content -->
-                <div class="row home-container">
-                   
+  <!-- Start Page Content -->
+  <!--*ngFor="let item of taskItemData"-->
+  <div class="row home-container">
+    <div class="col-md-12">
+
+      <app-rename-task [taskData]="taskData">
+        <h5>{{taskData.taskName}}</h5>
+      </app-rename-task>
+    </div>
+
+    <div class="col-md-3" *ngFor="let item of taskData.itemList">
+
+      <div class="card white">
+        <span class="card-inline">{{item.itemName}}  
+          <div class="pull-right btn-group" dropdown>
+              <a href="javascript:;" dropdownToggle>
+                <span><i class="fa fa-ellipsis-h"></i></span>
+            </a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="deleteTaskItem()">Delete</a></li>
+
+            </ul>
+          </div>
+      </span>
+
+      <ul class="ul-list task-item">
+        <li *ngFor="let card of item.cardList">
+          <a href="javascript:;">{{card.cardName}}</a>
+
+        </li>
+      </ul>
+      <button></button>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <button class="violet-btn" (click)="openModal(template)"><span>+</span> Add Item</button>
+  </div>
+
 </div>
-                    </div>
+</div>

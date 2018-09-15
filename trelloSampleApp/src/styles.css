@@ -30,14 +30,15 @@ img {
 }
 
 .violet-btn {
-   
-    display: inline-block;
+   width:100%;
+    display: block;
     justify-content: center;
     align-items: center;
     padding: 0 20px;
     min-width: 160px;
     height: 50px;
-    background-color: #bd59d4;
+   background-color: #f977ce;
+background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
     border-radius: 7px;
    margin-bottom: 20px;
     font-size: 14px;
@@ -53,6 +54,30 @@ img {
     -webkit-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
     -o-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
     -ms-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+}
+.violethover-btn {
+   width:100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 10px;
+    min-width: 160px;
+   background-color:transparent;
+    border-radius: 7px;
+    border: 1px solid #c373f2;
+    font-size: 14px;
+    color:#c373f2;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+   
+}
+.violethover-btn:hover{
+    color:#fff;
+    background-color:#c373f2;
 }
 a {
 	
@@ -72,4 +97,62 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
+}
+.home-container{
+    padding: 30px;
+}
+.card {
+    background: #ffffff none repeat scroll 0 0;
+    
+    padding: 0px;
+    border: 0 solid #e7e7e7;
+    border-radius: 5px;
+
+}
+.card .card-inline{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.card.violet-grad{
+ box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+    -moz-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+    -webkit-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+    -o-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+    -ms-box-shadow: 0 5px 15px 0px rgba(189, 89, 212, 0.5);
+}
+.card.white{
+margin-bottom: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+.card-img {
+   border-radius: 5px 5px 0 0;
+    padding: 20px;
+   
+}
+.dropdown-menu{
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+.card-body {
+   
+    padding: 20px;
+   
+}
+.violet-grad .card-img{
+    background-color: #f8ceec;
+background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+color:#fff;
+
+}
+.ul-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.task-item li a{
+display:block;
+background:#fafafa;
+padding:5px 7px;
+border-radius: 5px;
+color:#333;
 }

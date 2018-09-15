@@ -1,0 +1,15 @@
+<div class="btn-group" dropdown>
+  <a href="javascript:;" dropdownToggle>
+    <ng-content></ng-content>
+  </a>
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010"
+      role="menu" aria-labelledby="button-basic">
+       <form #taskNameForm="ngForm">
+    <li role="menuitem"><div class="form-group" (click)="$event.stopPropagation()">
+					<input #renameTask required [value]="taskData.taskName" class="form-control" type="text" name="username" placeholder="Task Name">
+					
+				</div></li>
+    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="renameTask.value&&renameTaskSubmit(renameTask.value,taskNameForm)">Save</button></li>
+       </form>
+  </ul>
+</div>
