@@ -11,11 +11,15 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomeModule'
   },
   {
+    path: 'task/:id',
+    loadChildren: './task/task.module#TaskModule'
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
-]
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

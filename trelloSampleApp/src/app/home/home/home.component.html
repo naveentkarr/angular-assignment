@@ -1,8 +1,9 @@
-<app-header-home></app-header-home>
+<app-home-header></app-home-header>
 <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row home-container">
                     <div class="col-md-3" *ngFor="let item of taskData">
+                      <a [routerLink]="['/task', item.id]" href="javascript:;">
                         <div class="card violet-grad">
                             <div class="card-img ">
                             
@@ -11,7 +12,9 @@
                              <h4>{{item.taskName}}</h4>
                                    
                         </div>
+                        
                         </div>
+                        </a>
                     </div>
                     <div class="col-md-2">
 <div class="add-item">
@@ -28,7 +31,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <form #taskForm="ngForm">
   <div class="modal-body">
-    Just a modal with a bunch of words inside, nothing serious.
+   <input [(ngModel)]="addTaskData.name" type="text" name="lname"><button (click)="addTask()" type="submit"  class="btn">Save</button>
   </div>
+  </form>
 </ng-template>

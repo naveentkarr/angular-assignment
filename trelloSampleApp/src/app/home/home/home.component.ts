@@ -1,4 +1,4 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { HomeService } from '../home.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -12,19 +12,26 @@ export class HomeComponent implements OnInit {
   config = {
     animated: true
   };
-taskData=[]
-  constructor(private homeService: HomeService,private modalService: BsModalService) { }
+  addTaskData = {
+    name: ''
+  };
+  taskData = [];
+  constructor(private homeService: HomeService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.homeService.getTaskList().subscribe((res: any) => {
-        console.log(res)
-        this.taskData=res
-       
-      }, error => {
-       
-    })
+      console.log(res);
+      this.taskData = res;
+
+    }, error => {
+
+    });
   }
-openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
+  }
+  addTask() {
+    this.homeService.addTask(this.addTaskData.name);
+    this.modalRef.hide();
   }
 }
