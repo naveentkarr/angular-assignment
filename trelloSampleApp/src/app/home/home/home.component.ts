@@ -30,8 +30,11 @@ export class HomeComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
   }
-  addTask() {
-    this.homeService.addTask(this.addTaskData.name);
+  addTask(form:any) {
+    if(form.valid){
+       this.homeService.addTask(this.addTaskData.name);
     this.modalRef.hide();
+    }
+   
   }
 }

@@ -33,7 +33,7 @@
   </div>
   <form #taskForm="ngForm">
   <div class="modal-body">
-   <input [(ngModel)]="addTaskData.name" type="text" name="lname"><button (click)="addTask()" type="submit"  class="btn">Save</button>
+   <input [(ngModel)]="addTaskData.name" type="text" required name="taskName"><button (click)="addTask(taskForm)" type="submit"  class="btn">Save</button>
   </div>
   </form>
 </ng-template>
