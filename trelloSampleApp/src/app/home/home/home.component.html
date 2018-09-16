@@ -6,34 +6,35 @@
                       <a [routerLink]="['/task', item.id]" href="javascript:;">
                         <div class="card violet-grad">
                             <div class="card-img ">
-                            
+                            <img width="100%" src="assets/images/superwoman.png">
                         </div>
                         <div class="card-body">
-                             <h4>{{item.taskName}}</h4>
+                             <h5>{{item.taskName}}</h5>
                                    
                         </div>
                         
                         </div>
                         </a>
                     </div>
-                    <div class="col-md-2">
-<div class="add-item">
+                    <div class="col-md-3">
+                       <div class="btn-group btn-group-full" dropdown>
+ <button dropdownToggle class="violet-btn full" ><span>+</span> Add Item</button>
+  <ul  *dropdownMenu class="dropdown-menu" role="menu" >
+       <form #taskForm="ngForm">
+    <li role="menuitem">
+      <div class="form-group" (click)="$event.stopPropagation()">
+					<input appAutoFocus #taskItem="ngModel" required class="form-control" [(ngModel)]="addTaskData.name" type="text" required name="taskName" placeholder="Task Name">
+					
+				</div>
+    </li>
+    <li role="menuitem"><button class="violethover-btn" (click)="addTask(taskForm)" type="submit">Save</button></li>
+       </form>
+  </ul>
+</div>
+<!--<div class="add-item">
   
-                      <button class="violet-btn full" (click)="openModal(template)"><span>+</span> Add Item</button>
-                    </div>
+                      <button class="violet-btn full" (click)="openModal(template)"><span>+</span> Add Task</button>
+                    </div>-->
                     </div>
 </div>
                     </div>
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <form #taskForm="ngForm">
-  <div class="modal-body">
-   <input [(ngModel)]="addTaskData.name" type="text" required name="taskName"><button (click)="addTask(taskForm)" type="submit"  class="btn">Save</button>
-  </div>
-  </form>
-</ng-template>

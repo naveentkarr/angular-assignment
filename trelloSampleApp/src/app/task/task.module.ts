@@ -9,7 +9,7 @@ import { TaskComponent } from './task/task.component';
 import { RenameTaskComponent } from './rename-task/rename-task.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
-
+import { DndListModule } from '@fjsc/ng2-dnd-list';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +17,7 @@ import { EditCardComponent } from './edit-card/edit-card.component';
     SharedModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    DndListModule,
     FormsModule
   ],
   declarations: [TaskComponent, RenameTaskComponent, AddCardComponent, EditCardComponent],

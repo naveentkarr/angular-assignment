@@ -6,11 +6,11 @@
     <div class="col-md-12">
 
       <app-rename-task [taskData]="taskData">
-        <h5>{{taskData.taskName}}</h5>
+        <h5>{{taskData?.taskName}}</h5>
       </app-rename-task>
     </div>
 
-    <div class="col-md-3" *ngFor="let item of taskData.itemList; let itemIndex=index">
+    <div class="col-md-3" *ngFor="let item of taskData?.itemList; let itemIndex=index">
 
       <div class="card white">
         <span class="card-inline">{{item.itemName}}  
@@ -22,29 +22,40 @@
               <li role="menuitem">
                 <a class="dropdown-item" href="javascript:;" (click)="deleteTaskItem( itemIndex)">Delete</a>
                 </li>
-
+ <li class="divider dropdown-divider"></li>
+    <form #itemNameForm="ngForm">
+    <li role="menuitem"><div class="form-group" (click)="$event.stopPropagation()">
+					<input appAutoFocus #itemName required [value]="item.itemName" class="form-control" type="text" name="itemname" placeholder="Item Name">
+					
+				</div></li>
+    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="renameItemSubmit(item,itemName.value)">Save</button></li>
+       </form>
             </ul>
           </div>
       </span>
 
-      <ul class="ul-list task-item">
-        <li *ngFor="let card of item.cardList;let cardIndex=index" draggable="true" aria-grabbed="false">
-          <a  href="javascript:;" (click)="openModal(template, item, card)">
-             <span >{{card.id}}{{card.cardName}}</span>
-             <span (click)="$event.stopPropagation()" class="pull-right">
+      <ul class="ul-list task-item" dndList (dndDrop)="onDrop($event, item)">
+      
+        <li *ngFor="let card of item.cardList;let cardIndex=index"  [dndDraggable]="card" (dndDragstart)="onDragstart($event, item, card)" (dndMoved)="onMoved(cardIndex, item)" (dndDragend)="item.dragging = false" (dndSelected)="onSelectItem(card)" [ngClass]="{'selected': card.selected}"
+                                [hidden]="item.dragging && card.selected" >
+          <a (click)="openModal(template, item, card)" href="javascript:;" >
+             <span >{{card.cardName}}</span>
+             
+             <div *ngIf="card.description">
+               <i class="fa fa-align-left"></i>
+             </div>
+             </a>
+<span  class="absolute-rrt1">
                <app-edit-card [cardData]="card" [itemData]="item"></app-edit-card>
              </span>
-             
-             </a>
-
         </li>
-        <app-add-card [itemData]="item"></app-add-card>
+       
       </ul>
-      
+       <app-add-card [itemData]="item"></app-add-card>
     </div>
 
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3" *ngIf="taskData">
     
     <div class="btn-group btn-group-full" dropdown>
  <button dropdownToggle class="violet-btn full" ><span>+</span> Add Item</button>
@@ -52,7 +63,7 @@
        <form #taskItemForm="ngForm">
     <li role="menuitem">
       <div class="form-group" (click)="$event.stopPropagation()">
-					<input [(ngModel)]="addTaskItem.name" #taskItem="ngModel" required class="form-control" type="text" name="username" placeholder="Item Name">
+					<input appAutoFocus [(ngModel)]="addTaskItem.name" #taskItem="ngModel" required class="form-control" type="text" name="username" placeholder="Item Name">
 					
 				</div>
     </li>

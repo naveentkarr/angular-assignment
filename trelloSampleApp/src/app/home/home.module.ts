@@ -2,9 +2,10 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @NgModule({
   imports: [
@@ -12,9 +13,9 @@ import { HomeComponent } from './home/home.component';
     HomeRoutingModule,
     FormsModule,
     SharedModule,
-    ModalModule.forRoot()
+    BsDropdownModule.forRoot()
   ],
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, AddTaskComponent],
   exports: [HomeComponent]
 })
 export class HomeModule { }

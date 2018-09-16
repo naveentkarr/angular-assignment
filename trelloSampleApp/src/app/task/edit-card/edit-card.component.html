@@ -1,5 +1,5 @@
-<div class="btn-group" dropdown>
-  <span  dropdownToggle><i class="fa fa-pencil"></i></span>
+<div class="btn-group" dropdown #dropdown="bs-dropdown">
+  <a href="javascript:;" dropdownToggle><span  ><i class="fa fa-pencil"></i></span></a>
   
   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010"
       role="menu" aria-labelledby="button-basic">
@@ -8,10 +8,10 @@
     <li class="divider dropdown-divider"></li>
     <form #cardNameForm="ngForm">
     <li role="menuitem"><div class="form-group" (click)="$event.stopPropagation()">
-					<input #cardName required [value]="cardData.cardName" class="form-control" type="text" name="cardname" placeholder="Card Name">
+					<input appAutoFocus #cardName required [value]="cardData.cardName" class="form-control" type="text" name="cardname" placeholder="Card Name">
 					
 				</div></li>
-    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="cardName.value&&renameCardSubmit(cardName.value,cardNameForm)">Save</button></li>
+    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="dropdown.isOpen = !dropdown.isOpen;renameCardSubmit(cardName.value,cardNameForm)">Save</button></li>
        </form>
   </ul>
 </div>

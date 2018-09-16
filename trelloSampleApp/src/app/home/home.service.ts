@@ -19,29 +19,14 @@ export class HomeService {
           itemName: 'To Do',
           id: 0,
           cardList: [
-            new Card('first card',10, '', [], [])
-          ]
-        }
-      ]
-    },
-    {
-      taskName: 'two ',
-      id: 1,
-      itemList: [
-        {
-          itemName: 'two To Do',
-          id: 1,
-          cardList: [
-            new Card('', 21, '', [], [])
+            new Card('first card',`${10}${Math.random().toString().split(".")[1]}`, 'This is this first description', [], [], false)
           ]
         }
       ]
     }
+   
   ];
   private taskDataSubject = new BehaviorSubject<any>(this.tasksList);
-  // private taskdDataSubject = new BehaviorSubject<any>(this.tasksList).pipe(filter((x:any) => {
-  //   return "sd";
-  // }));
   constructor(private http: HttpClient) { }
   updateTaskData(data) {
     this.taskDataSubject.next(data);
@@ -99,12 +84,22 @@ export class HomeService {
 
     }
   }
-  editTaskItem(taskId, itemId, cardData) {
+  renameTaskItem(taskId, itemId, name) {
+    for (let data of this.tasksList) {
+       for (let item of data.itemList) {
+          if (data.id == taskId && itemId == item.id) {
+           item.itemName=name;
+          }
+      }
+    }
+   
+  }
+  editTaskItemCard(taskId, itemId, cardData) {
     for (let data of this.tasksList) {
       for (let item of data.itemList) {
         for (let card of item.cardList) {
           if (data.id == taskId && itemId == item.id && cardData.id == card.id) {
-            card = cardData;
+            card.description = cardData.description;
           }
 
         }
@@ -112,14 +107,15 @@ export class HomeService {
       }
 
     }
+    
   }
   addCard(taskId, itemId, cardName) {
     for (let data of this.tasksList) {
       for (let item of data.itemList) {
         if (data.id == taskId && itemId == item.id) {
-          let cardId=`${itemId+1}${item.cardList.length}`
+          let cardId=`${itemId+1}${item.cardList.length}${Math.random().toString().split(".")[1]}`
           item.cardList.push(
-            new Card(cardName, parseInt(cardId), '', [], [])
+            new Card(cardName, cardId, '', [], [],false)
           );
         }
 

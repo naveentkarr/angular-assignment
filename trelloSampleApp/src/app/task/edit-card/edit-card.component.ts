@@ -21,9 +21,9 @@ taskId: any;
      this.homeService.removeCard(this.taskId, this.itemData.id, this.cardData.id);
   }
 renameCardSubmit(name, form) {
-    if (form.valid) {
+    if (name) {
       this.cardData.cardName = name;
-      this.homeService.editTaskItem(this.taskId, this.itemData.id, this.cardData);
+      this.homeService.editTaskItemCard(this.taskId, this.itemData.id, this.cardData);
     }
 
   }

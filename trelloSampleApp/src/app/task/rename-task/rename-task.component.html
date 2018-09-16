@@ -6,7 +6,7 @@
       role="menu" aria-labelledby="button-basic">
        <form #taskNameForm="ngForm">
     <li role="menuitem"><div class="form-group" (click)="$event.stopPropagation()">
-					<input #renameTask required [value]="taskData.taskName" class="form-control" type="text" name="username" placeholder="Task Name">
+					<input appAutoFocus #renameTask required [value]="taskData.taskName" class="form-control" type="text" name="username" placeholder="Task Name">
 					
 				</div></li>
     <li role="menuitem"><button class="violethover-btn" type="submit" (click)="renameTask.value&&renameTaskSubmit(renameTask.value,taskNameForm)">Save</button></li>
