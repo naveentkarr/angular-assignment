@@ -1,0 +1,17 @@
+<div class="btn-group" dropdown>
+  <a dropdownToggle href="javascript:;" class="add-button">
+                        <span>
+                                <i class="fa fa-plus-circle"></i>
+                            </span> Add Card</a>
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010" role="menu" aria-labelledby="button-basic">
+    <form #addCardForm="ngForm">
+      <li role="menuitem">
+        <div class="form-group" (click)="$event.stopPropagation()">
+          <input appAutoFocus #cardName="ngModel" required [(ngModel)]="cardData.name" class="form-control" type="text" name="username" placeholder="Card Name">
+
+        </div>
+      </li>
+      <li role="menuitem"><button class="violethover-btn" type="submit" (click)="addCardSubmit(addCardForm)">Save</button></li>
+    </form>
+  </ul>
+</div>

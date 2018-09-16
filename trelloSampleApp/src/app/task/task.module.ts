@@ -3,9 +3,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TaskRoutingModule } from './task-routing.module';
 import { TaskComponent } from './task/task.component';
 import { RenameTaskComponent } from './rename-task/rename-task.component';
+import { AddCardComponent } from './add-card/add-card.component';
+import { EditCardComponent } from './edit-card/edit-card.component';
 
 @NgModule({
   imports: [
@@ -13,9 +16,10 @@ import { RenameTaskComponent } from './rename-task/rename-task.component';
     TaskRoutingModule,
     SharedModule,
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     FormsModule
   ],
-  declarations: [TaskComponent, RenameTaskComponent],
+  declarations: [TaskComponent, RenameTaskComponent, AddCardComponent, EditCardComponent],
   exports: [TaskComponent, RenameTaskComponent]
 })
 export class TaskModule { }

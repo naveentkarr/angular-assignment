@@ -19,7 +19,7 @@ export class HomeService {
           itemName: 'To Do',
           id: 0,
           cardList: [
-            new Card('first card', 0, '', [], [])
+            new Card('first card',10, '', [], [])
           ]
         }
       ]
@@ -32,7 +32,7 @@ export class HomeService {
           itemName: 'two To Do',
           id: 1,
           cardList: [
-            new Card('', 1, '', [], [])
+            new Card('', 21, '', [], [])
           ]
         }
       ]
@@ -68,12 +68,74 @@ export class HomeService {
     );
     this.updateTaskData(this.tasksList);
   }
-  renameTask(name, id){
-    for(let item of this.tasksList){
-      if(id == item.id){
-        item.taskName=name;
+  renameTask(name, id) {
+    for (let item of this.tasksList) {
+      if (id == item.id) {
+        item.taskName = name;
       }
     }
     this.updateTaskData(this.tasksList);
+  }
+  removeTaskItem(taskId, itemIndex) {
+    for (let data of this.tasksList) {
+      if (data.id == taskId) {
+        data.itemList.splice(itemIndex, 1);
+      }
+
+    }
+    this.updateTaskData(this.tasksList);
+  }
+  addTaskItem(taskId, itemName) {
+    for (let data of this.tasksList) {
+      if (data.id == taskId) {
+        data.itemList.push(
+          {
+            itemName: itemName,
+            id: data.itemList.length,
+            cardList: []
+          }
+        );
+      }
+
+    }
+  }
+  editTaskItem(taskId, itemId, cardData) {
+    for (let data of this.tasksList) {
+      for (let item of data.itemList) {
+        for (let card of item.cardList) {
+          if (data.id == taskId && itemId == item.id && cardData.id == card.id) {
+            card = cardData;
+          }
+
+        }
+
+      }
+
+    }
+  }
+  addCard(taskId, itemId, cardName) {
+    for (let data of this.tasksList) {
+      for (let item of data.itemList) {
+        if (data.id == taskId && itemId == item.id) {
+          let cardId=`${itemId+1}${item.cardList.length}`
+          item.cardList.push(
+            new Card(cardName, parseInt(cardId), '', [], [])
+          );
+        }
+
+      }
+
+    }
+  }
+  removeCard(taskId, itemId, cardId) {
+for (let data of this.tasksList) {
+      for (let item of data.itemList) {
+          if (data.id == taskId && itemId == item.id) {
+           item.cardList=item.cardList.filter(x=>{
+             return x.id!=cardId;
+           })
+          }
+      }
+    }
   }
 }

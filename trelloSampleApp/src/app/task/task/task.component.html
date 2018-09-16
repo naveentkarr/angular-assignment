@@ -10,7 +10,7 @@
       </app-rename-task>
     </div>
 
-    <div class="col-md-3" *ngFor="let item of taskData.itemList">
+    <div class="col-md-3" *ngFor="let item of taskData.itemList; let itemIndex=index">
 
       <div class="card white">
         <span class="card-inline">{{item.itemName}}  
@@ -19,25 +19,68 @@
                 <span><i class="fa fa-ellipsis-h"></i></span>
             </a>
             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010" role="menu" aria-labelledby="button-basic">
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="deleteTaskItem()">Delete</a></li>
+              <li role="menuitem">
+                <a class="dropdown-item" href="javascript:;" (click)="deleteTaskItem( itemIndex)">Delete</a>
+                </li>
 
             </ul>
           </div>
       </span>
 
       <ul class="ul-list task-item">
-        <li *ngFor="let card of item.cardList">
-          <a href="javascript:;">{{card.cardName}}</a>
+        <li *ngFor="let card of item.cardList;let cardIndex=index" draggable="true" aria-grabbed="false">
+          <a  href="javascript:;" (click)="openModal(template, item, card)">
+             <span >{{card.id}}{{card.cardName}}</span>
+             <span (click)="$event.stopPropagation()" class="pull-right">
+               <app-edit-card [cardData]="card" [itemData]="item"></app-edit-card>
+             </span>
+             
+             </a>
 
         </li>
+        <app-add-card [itemData]="item"></app-add-card>
       </ul>
-      <button></button>
+      
     </div>
 
   </div>
   <div class="col-md-3">
-    <button class="violet-btn" (click)="openModal(template)"><span>+</span> Add Item</button>
+    
+    <div class="btn-group btn-group-full" dropdown>
+ <button dropdownToggle class="violet-btn full" ><span>+</span> Add Item</button>
+  <ul  *dropdownMenu class="dropdown-menu" role="menu" >
+       <form #taskItemForm="ngForm">
+    <li role="menuitem">
+      <div class="form-group" (click)="$event.stopPropagation()">
+					<input [(ngModel)]="addTaskItem.name" #taskItem="ngModel" required class="form-control" type="text" name="username" placeholder="Item Name">
+					
+				</div>
+    </li>
+    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="addTaskItemSubmit(taskItemForm)">Save</button></li>
+       </form>
+  </ul>
+</div>
   </div>
 
 </div>
 </div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{cardData.cardName}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #cardEditForm="ngForm">
+  <div class="modal-body">
+    <div class="form-group" >
+      <label>Card Description</label>
+   <input [(ngModel)]="cardData.description" placeholder="Card Description" class="form-control" type="text"  name="cardDescription">
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="modalRef.hide()"  class="btn btn-default">Cancel</button>
+    <button (click)="editCardSubmit(cardEditForm)" type="submit"  class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</ng-template>

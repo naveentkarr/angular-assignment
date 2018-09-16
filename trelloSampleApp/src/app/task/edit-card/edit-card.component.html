@@ -1,0 +1,17 @@
+<div class="btn-group" dropdown>
+  <span  dropdownToggle><i class="fa fa-pencil"></i></span>
+  
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown25010"
+      role="menu" aria-labelledby="button-basic">
+    <li role="menuitem"><a class="dropdown-item" (click)="deleteCardSubmit()" href="javascript:;">Delete</a></li>
+   
+    <li class="divider dropdown-divider"></li>
+    <form #cardNameForm="ngForm">
+    <li role="menuitem"><div class="form-group" (click)="$event.stopPropagation()">
+					<input #cardName required [value]="cardData.cardName" class="form-control" type="text" name="cardname" placeholder="Card Name">
+					
+				</div></li>
+    <li role="menuitem"><button class="violethover-btn" type="submit" (click)="cardName.value&&renameCardSubmit(cardName.value,cardNameForm)">Save</button></li>
+       </form>
+  </ul>
+</div>
